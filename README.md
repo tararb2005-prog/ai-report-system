@@ -40,3 +40,14 @@ This project was developed for internship Task-2: Automated Report Generation.
 ## 👨‍💻 Author
 
 Tara Bangarage
+
+## 📷 Screenshots
+
+### 🔐 Login Page
+![Login](screenshots/login.png)
+
+### 📊 Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### 📄 Generated Report
+![Report](screenshots/report.png)
