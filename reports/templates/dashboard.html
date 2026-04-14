@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+
+<h2>Your Reports</h2>
+
+{% for r in reports %}
+<div class="card" style="margin-top:10px;">
+  <h3>{{r.file_name}}</h3>
+  <p>{{r.created_at}}</p>
+  <a href="/media/{{r.pdf_file}}">
+    <button>Download</button>
+  </a>
+</div>
+{% empty %}
+<p>No reports yet</p>
+{% endfor %}
+
+</div>
+
+{% endblock %}

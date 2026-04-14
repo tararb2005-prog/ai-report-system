@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AI Report System</title>
+
+<style>
+:root {
+  --bg1:#0f172a;
+  --bg2:#020617;
+  --card:#1e293bcc;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+}
+
+body {
+  margin:0;
+  font-family:Arial;
+  color:var(--text);
+  background:linear-gradient(120deg,var(--bg1),var(--bg2));
+}
+
+.nav {
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+}
+
+.container {
+  max-width:900px;
+  margin:40px auto;
+}
+
+.card {
+  background:var(--card);
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+button {
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#4facfe;
+  color:white;
+  cursor:pointer;
+}
+
+input {
+  padding:8px;
+  border-radius:6px;
+  border:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+  <div>📊 AI Report</div>
+  <div>
+    Hi {{request.user.username}} |
+    <a href="/home/">Home</a> |
+    <a href="/dashboard/">Dashboard</a> |
+    <a href="/logout/">Logout</a>
+  </div>
+</div>
+
+<div class="container">
+{% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

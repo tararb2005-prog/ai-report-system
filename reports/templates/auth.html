@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AI Report System</title>
+
+<style>
+body {
+  margin:0;
+  font-family:Arial;
+  background: linear-gradient(120deg, #0f172a, #020617);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.card {
+  background: rgba(30, 41, 59, 0.85);
+  padding:40px;
+  border-radius:18px;
+  width:360px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+h2 {
+  color:#e2e8f0;
+  margin-bottom:25px;
+}
+
+input {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+  background:#334155;
+  color:white;
+  outline:none;
+}
+
+input::placeholder {
+  color:#94a3b8;
+}
+
+input:focus {
+  box-shadow:0 0 0 2px #4facfe;
+}
+
+button {
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border:none;
+  border-radius:10px;
+  background:#4facfe;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  background:#3b8eea;
+}
+
+.link {
+  color:#60a5fa;
+  margin-top:15px;
+  display:block;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.error {color:#ef4444;}
+.success {color:#22c55e;}
+
+.small {
+  font-size:12px;
+  color:#94a3b8;
+}
+</style>
+
+<script>
+function toggleForm(type) {
+  document.getElementById("login").style.display = type === "login" ? "block" : "none";
+  document.getElementById("signup").style.display = type === "signup" ? "block" : "none";
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>📊 AI Report System</h2>
+
+{% if error %}
+<p class="error">{{error}}</p>
+{% endif %}
+
+{% if success %}
+<p class="success">{{success}}</p>
+{% endif %}
+
+<!-- LOGIN -->
+<form method="post" id="login">
+{% csrf_token %}
+<input type="hidden" name="action" value="login">
+
+<input type="text" name="email" placeholder="Email address" required>
+<input type="password" name="password" placeholder="Password" required>
+
+<button>Sign In</button>
+</form>
+
+<!-- SIGNUP -->
+<form method="post" id="signup" style="display:none;">
+{% csrf_token %}
+<input type="hidden" name="action" value="signup">
+
+<input type="text" name="email" placeholder="Email address" required>
+<input type="password" name="password" placeholder="Password" required>
+
+<div class="small">(minimum 8 characters)</div>
+
+<button>Create Account</button>
+</form>
+
+<span class="link" onclick="toggleForm('signup')">Create Account</span>
+<span class="link" onclick="toggleForm('login')">Back to Login</span>
+
+</div>
+
+</body>
+</html>

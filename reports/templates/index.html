@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Upload Dataset</h2>
+
+    <p style="color:#94a3b8;">
+        Upload CSV → Analyze → Generate AI Report → Download PDF
+    </p>
+
+    <!-- FORM -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="file" name="file" required><br><br>
+
+        <button type="submit">Generate AI Report</button>
+    </form>
+
+    <!-- LOADING -->
+    <p id="loading" style="display:none;">⏳ Generating AI Report...</p>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+const form = document.querySelector("form");
+const loading = document.getElementById("loading");
+
+form.addEventListener("submit", () => {
+    loading.style.display = "block";
+});
+</script>
+
+<!-- 🔥 RESULT SECTION -->
+{% if graph %}
+
+<div style="margin-top:40px; text-align:center;">
+
+    <h2>📊 Data Analysis</h2>
+
+    <!-- STATS CARDS -->
+    <div style="display:flex; justify-content:center; gap:20px; margin:20px; flex-wrap:wrap;">
+
+        <div style="background:#1e293b; padding:15px 25px; border-radius:10px;">
+            <b>Average</b><br>{{avg}}
+        </div>
+
+        <div style="background:#1e293b; padding:15px 25px; border-radius:10px;">
+            <b>Highest</b><br>{{highest}}
+        </div>
+
+        <div style="background:#1e293b; padding:15px 25px; border-radius:10px;">
+            <b>Lowest</b><br>{{lowest}}
+        </div>
+
+        <div style="background:#1e293b; padding:15px 25px; border-radius:10px;">
+            <b>Topper</b><br>{{topper}}
+        </div>
+
+    </div>
+
+    <!-- GRAPH -->
+    <div style="margin-top:20px;">
+        <img src="data:image/png;base64,{{ graph }}" width="600">
+    </div>
+
+    <!-- SUCCESS -->
+    <p style="color:lightgreen; margin-top:15px;">
+        ✅ Report Generated Successfully
+    </p>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
